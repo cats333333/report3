@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>隐秘信号 - ARG</title>
+<style>
+*{background:#080808;color:#00dd77;font-family:monospace;margin:0;padding:0;box-sizing:border-box;}
+body{padding:20px;max-width:700px;margin:0 auto;}
+.tip{color:#888;font-size:14px;}
+#input{width:100%;padding:10px;background:#111;border:1px solid #00dd77;outline:none;font-size:16px;margin:10px 0;}
+button{width:100%;padding:10px;border:1px solid #00dd77;background:#080808;color:#00dd77;font-size:16px;cursor:pointer;}
+#result{margin-top:15px;font-size:16px;line-height:1.6;}
+</style>
+</head>
+<body>
+<div id="story">
+<p>【日志片段 #001】</p>
+<p>这里藏着一条消息。</p>
+<p class="tip">提示：第一关密码是单词 signal</p>
+</div>
+<br>
+<input id="input" placeholder="输入线索答案">
+<button onclick="check()">提交</button>
+<div id="result"></div>
+
+<script>
+let stage = 1;
+function check(){
+    let ans = document.getElementById("input").value.trim().toLowerCase();
+    let res = document.getElementById("result");
+    if(stage === 1){
+        if(ans === "signal"){
+            res.innerText = "✅ 信号接收成功。下一条提示：四个季节的英文首字母连起来";
+            stage = 2;
+        }else{
+            res.innerText = "❌ 没有识别到有效信号";
+        }
+    }else if(stage === 2){
+        if(ans === "swfa"){
+            res.innerText = "✅ 你找到了隐藏入口。游戏通关。";
+            stage = 3;
+        }else{
+            res.innerText = "❌ 信号错误，重新尝试";
+        }
+    }
+}
+</script>
+</body>
+</html>
